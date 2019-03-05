@@ -1,0 +1,80 @@
+\documentclass[../main.tex]{subfiles}
+ 
+\begin{document}
+We are to find the relationship between voltage and current in the device.
+
+\begin{figure} [h!]
+    \centering
+    \begin{circuitikz} [scale=2, american] 
+    \draw (0,0) to[I, a=10<\milli\ampere>] (0,2) -- (2,2) to[R, a=4.7<\kilo\ohm>] (2,0) -- (0,0);
+    \draw (2,2) to[R, a=3.3<\kilo\ohm>] (4,2) to[R, a^=1.2<\kilo\ohm>] (4,1) to[battery1, a^=60<\volt>] (4,0) -- (0,0);
+    \draw (4,0) -- (6,0) to[generic, l_=device] (6,2) -- (4,2);
+    \end{circuitikz}
+\end{figure}
+
+$R_{N}$ will be the same as $R_{TH}$ so we can use the same techniques to find it.
+
+\begin{align*}
+    R_{TH} &= (\SI{4.7}{\kilo\ohm} + \SI{3.3}{\kilo\ohm})||\SI{1.2}{\kilo\ohm} \\
+           &\approx \SI{1.04}{\kilo\ohm}
+\end{align*}
+
+First thing is to short the device and label the current through it, short all voltage sources and open all current sources.
+
+\begin{figure} [h!]
+    \centering
+    \begin{circuitikz} [scale=2, american] 
+    \draw (0,0) to[I, a=10<\milli\ampere>] (0,2) -- (2,2) to[R, a=4.7<\kilo\ohm>] (2,0) -- (0,0);
+    \draw (2,2) to[R, a=3.3<\kilo\ohm>] (4,2) to[R, a^=1.2<\kilo\ohm>] (4,1) to[battery1, a^=60<\volt>] (4,0) -- (0,0);
+    \draw (4,0) -- (6,0) -- (6,2) -- (4,2);
+    
+    \draw [->] (5.85,1.25) -- (5.85,0.75);
+    \draw (5.65,1) node [] {$I_N$};
+    \end{circuitikz}
+\end{figure}
+
+\newpage
+Using known methods, we can calculate $I_{N}$ such as mesh analysis.
+
+\begin{figure} [h!]
+    \centering
+    \begin{circuitikz} [scale=2, american] 
+    \draw (0,0) to[I, a^=10<\milli\ampere>] (0,2) -- (2,2) to[R, v_>=$V_3$, a^=4.7<\kilo\ohm>] (2,0) -- (0,0);
+    \draw (2,2) to[R, v_>=$V_2$, a^=3.3<\kilo\ohm>] (4,2) to[R, v_<=$V_1$, a^=1.2<\kilo\ohm>] (4,1) to[battery1, a^=60<\volt>] (4,0) -- (0,0);
+    \draw (4,0) -- (6,0) -- (6,2) -- (4,2);
+    
+    \draw[thin, <-, >=triangle 45] (1,1) node{$I_1$}  ++(-60:0.5) arc (-60:160:0.5);
+    \draw[thin, <-, >=triangle 45] (3,1) node{$I_2$}  ++(-60:0.5) arc (-60:160:0.5);
+    \draw[thin, <-, >=triangle 45] (5,1) node{$I_3$}  ++(-60:0.5) arc (-60:160:0.5);
+    \end{circuitikz}
+\end{figure}
+
+
+\begin{align*}
+    I_1&: I_1=\SI{10}{\milli\ampere}    & & \\
+    I_2&: 0 = 60 - V_3 + V_2 - V_1      & 0 &= 60 - (10 - I_2)(4.7) + (I_2)(3.3) - (I_3 - I_2)(1.2) \\
+    I_3&: 0 = V_1 + 60                  & 0 &= (I_3 - I_2)(1.2) + 60                            
+\end{align*}
+
+\begin{align*}
+    I_1&: &                                 &       & I_1 &= \SI{10}{\milli\ampere} \\
+    I_2&: & I_2(4.7 + 3.3 + 1.2) - I_3(1.2) &= -13  & I_2 &= \SI{5.88}{\milli\ampere} \\
+    I_3&: & -I_2(1.2) + I_3(1.2)            &= 60   & I_3 &= \SI{55.88}{\milli\ampere}                     
+\end{align*}
+
+$$ \therefore I_N = \SI{55.88}{\milli\ampere}$$
+
+\begin{figure} [h!]
+    \centering
+    \begin{circuitikz} [scale=2, american] 
+    \draw (2,0) -- (0,0) to[I, l=$I_{N}$, a=55.88<\milli\ampere>] (0, 2) -- (2,2);
+    \draw (4,0) -- (2,0) to[R, l=$R_{N}$, a=1.04<\kilo\ohm>] (2,2) -- (4,2) -- (4,0);
+    
+    \draw [->] (3.85,1.25) -- (3.85,0.75);
+    \draw (3.65,1) node [] {$I_N$};
+    \node[draw,align=left] at (5,1) {$\displaystyle I = 55.88 + \frac{V}{1.04}$};
+
+    \end{circuitikz}
+\end{figure}
+
+\end{document}

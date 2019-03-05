@@ -1,0 +1,222 @@
+\documentclass{template}
+\usepackage[english]{babel}
+
+\begin{document}
+% New Macros for Title, author, date
+\newcommand{\mytitle}{Electricity \& Electronics I}
+\newcommand{\CourseCode}{Eng Tech 1EL3}
+\newcommand{\myauthor}{Aaron Chiu}
+\newcommand{\mydate}{\today}
+
+\begin{titlepage}
+\begin{center}
+    \Large \mytitle \\
+    \large \myauthor \\
+    \mydate
+
+\end{center}
+\end{titlepage}
+
+\tableofcontents
+
+% HEADER & FOOTER
+\lhead{\mytitle}
+\rhead{\nouppercase{\leftmark}}
+\cfoot{\thepage}
+\raggedright
+
+% Content Beginning
+\newpage
+\section{Basic Circuit Analysis}
+\subsection{Ohm's Law}
+
+\subsection{Kirchoff's Voltage \& Current Laws}
+
+\subsection{Series \& Parallel Circuits}
+
+\subsection{Open \& Short Circuits}
+
+
+
+
+
+\newpage
+\section{Advanced Circuit Analysis}
+\subsection{Source Transformation (Conversion)} % Source Transformation
+
+\subfile{Figures/Source_Transformation} % Circuit Diagram
+Current Sources in parallel with a resistor can be made into a voltage source with the same resistor in series. To convert between the two:
+
+\begin{multicols} {2}
+\centering
+Voltage $\rightarrow$ Current \[I_S = \frac{V_S}{R}\]
+Current $\rightarrow$ Voltage \[V_S = I_SR\]
+\end{multicols}
+
+\subsection*{Notes on Source Transformation} % Notes
+\begin {itemize}
+    \item A Current Source in parallel cannot be resolved into a Voltage Source or vice versa is out of the scope of the course
+    \item The resulting Current/Battery Source should face the same way as the one before the transformation
+\end{itemize}
+
+\newpage
+\subsection{Nodal Analysis} % Nodal Analysis
+
+\subfile{Figures/Nodal_Analysis} % Circuit Diagram
+
+\textbf{Step 1:} Write the known voltages at the known nodes % Step 1
+\begin{align*}
+    &\text{A: } A = -10 \: V \\
+    &\text{B: } B = -12 \: V
+\end{align*}
+
+\textbf{Step 2:} Write KCL equations for the other nodes % Step 2
+\begin{itemize}
+    \item Currents in equals currents out
+\end{itemize}
+\begin{align*}
+    &\text{C: } I_5 + 5 = 2 \\
+    &\text{D: } I_4 + 2 + I_3 = I_2 \\
+    &\text{E: } 0 = I_5 + I_4 + I_1
+\end{align*}
+
+\textbf{Step 3:} Rewrite in terms of voltages and resistances % Step 3
+\begin{itemize}
+    \item Note that Voltage is start minus end
+    \item Write known voltages as their numerical value
+\end{itemize}
+
+\begin{align*}
+    &\text{C: } \frac{V_E - V_C}{2} + 5 = 2 \\
+    &\text{D: } \frac{V_E - V_D}{1} + 2 + \frac{0 - V_D}{2} = \frac{V_D - (-12)}{0.5} \\
+    &\text{E: } 0 = \frac{V_E - V_C}{2} + \frac{V_E - V_D}{1} + \frac{V_E - (-10)}{4}
+\end{align*}
+
+\textbf{Step 4:} Isolate for voltages into a proper matrix form \\ % Step 4
+(ie one voltage in one column and etc)
+\begin {itemize}
+    \item It is recommended to reorganise voltages at the nodes so that the coefficients are positive since this will result in the main diagonal being positive
+    \item This will also result in the coefficients being the sum of the conductances leading to the node in the main diagonal
+    \item The coefficients of the negative will be the conductance leading out of the node to the other node 
+\end{itemize}
+\begin{align*}
+    &\text{C: } &&+V_C \bigg[\frac{1}{2}\bigg]  &&- V_D [0]                                                   &&- V_E \bigg[\frac{1}{2}\bigg]               &&= 3 \\
+    &\text{D: } &&-V_C [0]                      &&+ V_D \bigg[\frac{1}{0.5} + \frac{1}{2} + \frac{1}{1}\bigg] &&- V_E \bigg[\frac{1}{1}\bigg]               &&= -22 \\
+    &\text{E: } &&-V_C \bigg[\frac{1}{2}\bigg]  &&- V_D \bigg[\frac{1}{1}\bigg]                               &&+ V_E \bigg[\frac{1}{2} + \frac{1}{4} + \frac{1}{1}\bigg] &&= -2.5
+\end{align*}
+
+\textbf{Step 5:} Solve for the voltages % Step 5
+\begin{align*}
+    &V_C = 0 \: V &&V_D = -8 \: V &&V_E = -6 \: V
+\end{align*}
+
+\subsubsection*{Notes on Nodal Analysis} % Notes
+\begin {itemize}
+    \item Always choose a reference node that has the most batteries connecting to it
+    \item If possible use source conversion to convert the voltage sources to current sources
+    \item To obtain the current through a battery, it is necessary to write KCL through a loop containing the battery
+\end{itemize}
+
+\newpage
+\subsection{Mesh (Loop) Analysis} % Mesh Analysis
+
+\subfile{Figures/Mesh_Analysis} % Circuit Diagram
+
+\textbf{Step 1:} Write the known currents at the known meshes % Step 1
+\begin{align*}
+   &I_1: \ I_1 = 5 \: mA & I_2: \ 2 &= I_1 - I_2  \\
+   &                     &       I_2&= 3 \: mA
+\end{align*}
+
+\textbf{Step 2:} Write KVL equations for the other meshes % Step 2
+\begin{itemize}
+    \item Travel in the direction of the loops and list down the voltages
+    \item The sign you encounter first is the sign you write down
+\end{itemize}
+\begin{align*}
+    &I_3: \ -V_3 - V_1 - 10 + V_2 = 0 \\
+    &I_4: \ -V_2 + 12 - V_4 = 0
+\end{align*}
+
+\textbf{Step 3:} Rewrite in terms of currents and resistances % Step 3
+\begin{itemize}
+    \item Note that according to the direction of the voltage (+ $\rightarrow$ -), it is any current flowing with the voltage minus and current flowing against the voltage
+    \item Write known currents as their numerical value and keep the signs of the variables
+\end{itemize}
+\begin{align*}
+    &I_3: \ -(3 - I_3)(1) - (-I_3)(4) - 10 + (I_3 - I_4)(2) = 0 \\
+    &I_4: \ -(I_3 - I_4)(2) + 12 - (5 - I_4)(0.5) = 0
+\end{align*}
+
+\textbf{Step 4:} Isolate for currents into a proper matrix form \\ % Step 4
+(ie one current in one column and etc)
+\begin {itemize}
+    \item It is recommended to reorganise currents at the meshes so that the coefficients are positive since this will result in the main diagonal being positive
+    \item This will also result in the coefficients being the sum of the resistances around the mesh in the main diagonal
+    \item The coefficients of the negative will be the resistances between the other mesh and the current mesh
+\end{itemize}
+\begin{align*}
+    &I_3: &&+I_3(1 + 4 + 2) &&- I_4(2)       &&= 13\\
+    &I_4: &&-I_3(2)         &&+ I_4(2 + 0.5) &&= -9.5
+\end{align*}
+
+\textbf{Step 5:} Solve for the currents % Step 5
+\begin{align*}
+    &I_3 = 1 \: mA &&I_4 = -3 \: mA
+\end{align*}
+
+\subsubsection*{Notes on Mesh Analysis} % Notes
+\begin {itemize}
+    \item It is recommended to make all your meshes turn clockwise
+    \item If possible use source conversion to convert the current sources to voltage sources
+    \item To obtain the voltage through a current source, it is necessary to write KVL through a loop containing the battery
+\end{itemize}
+
+\newpage
+\section{Network Theorems}
+\subsection{Superposition Theorem}
+
+If a circuit has multiple sources, one can "kill" all sources but one. This results in the circuit only having one source making it easier to analyse. Current sources become open circuited and batteries become short circuited. The sum of both currents at the branch in question will be the actual current of the branch.
+
+\subfile{Figures/Superposition} % Circuit Diagram
+
+\begin{align*}
+    R_{eqA} &= 120 \ \Omega + 200 \ \Omega || 240 \ \Omega \\
+            &\approx 229.09 \ \Omega \\
+    I_A &= \frac{6 \ \text{V}}{229.09 \ \Omega} \\
+        &\approx \SI{26.19}{\milli\ampere}
+\end{align*}
+
+\begin{align*}
+    i_{3A}  &= \SI{26.19}{\milli\ampere}  \cdot \frac{240 \ \Omega}{200 \ \Omega + 240 \ \Omega} & i_{3B}  &= \SI{50}{\milli\ampere} \ \cdot \frac{200 \ \Omega}{120 \ \Omega || 200 \ \Omega || 240 \ \Omega} \\
+    &\approx \SI{14.29}{\milli\ampere} & &\approx \SI{14.29}{\milli\ampere}
+\end{align*}
+
+\begin{align*}
+    i_{3}  &= \SI{14.29}{\milli\ampere} + \SI{14.29}{\milli\ampere} \\
+            &\approx \SI{28.58}{\milli\ampere}
+\end{align*}
+
+\newpage
+\subsection{Th\'evenin's Theorem}
+Any circuit that has two terminals (an open circuit) can be replaced with a Th\'evenin circuit is composed of a voltage source in series with a resistor named $E_{TH}$ and $R_{TH}$ respectively. $E_{TH}$ is the voltage between the two open terminals. $R_{TH}$ is the resistance when voltage sources are shorted and current sources are opened. An equation can be then derived. 
+$$V=E_{TH}+R_{TH}I$$
+
+\subfile{Figures/Thevenin} % Circuit Diagram
+
+\newpage
+\subsection{Norton's Theorem}
+Similarly to Th\'evenin's theorem, this states a circuit can be replaced with a current source in parallel with a resistor named $I_{N}$ and $R_{N}$ respectively. Instead of opening the circuit where the device of question is, we short the device.
+
+\subfile{Figures/Norton} % Circuit Diagram
+
+\newpage
+\subsection{Relationships between Th\'evenin's and Norton's Theorem}
+
+
+\subsection{Maximum Power Transfer Theorem}
+
+
+
+
+\end{document}

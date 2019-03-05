@@ -1,0 +1,92 @@
+\documentclass[../main.tex]{subfiles}
+ 
+\begin{document}
+We are to find the relationship between voltage and current in the device.
+
+\begin{figure} [h!]
+    \centering
+    \begin{circuitikz} [scale=2, american] 
+    \draw (0,0) to[I, a=10<\milli\ampere>] (0,2) -- (2,2) to[R, a=4.7<\kilo\ohm>] (2,0) -- (0,0);
+    \draw (2,2) to[R, a=3.3<\kilo\ohm>] (4,2) to[R, a^=1.2<\kilo\ohm>] (4,1) to[battery1, a^=60<\volt>] (4,0) -- (0,0);
+    \draw (4,0) -- (6,0) to[generic, l_=device] (6,2) -- (4,2);
+    \end{circuitikz}
+\end{figure}
+
+First thing is to label the network terminals, short all voltage sources and open all current sources.
+
+\begin{figure} [h!]
+\centering
+\begin{circuitikz} [scale=2, american] 
+    \draw (0, 1.5) -- (0,2) -- (2,2) to[R, a=4.7<\kilo\ohm>] (2,0) -- (0,0) -- (0, 0.5);
+    \draw (2,2) to[R, a=3.3<\kilo\ohm>] (4,2) to[R, a^=1.2<\kilo\ohm>] (4,1) -- (4,0) -- (0,0);
+    \draw (4,0) -- (5,0);
+    \draw (4,2) -- (5,2);
+    
+    \draw (0, 1.5) node[ocirc] {};
+    \draw (0, 0.5) node[ocirc] {};
+    \draw (5,0) node[ocirc] {};
+    \draw (5,2) node[ocirc] {};
+    
+    \draw (5.75,1) node[] {$R_{TH}$};
+    \draw [decorate, decoration={brace,amplitude=10pt,mirror,raise=2pt}] (5.25,0) -- (5.25,2) node []{};
+\end{circuitikz}        
+\end{figure}
+
+\begin{align*}
+    R_{TH} &= (\SI{4.7}{\kilo\ohm} + \SI{3.3}{\kilo\ohm})||\SI{1.2}{\kilo\ohm} \\
+           &\approx \SI{1.04}{\kilo\ohm}
+\end{align*}
+
+\newpage
+Using known methods, we can calculate $E_{TH}$ such as nodal analysis.
+
+\begin{figure} [h!]
+    \centering
+    \begin{circuitikz} [scale=2, american] 
+    \draw (0,0) to[I, a=10<\milli\ampere>] (0,2) -- (2,2) to[R, f_>=$I_1$, a=4.7<\kilo\ohm>] (2,0) -- (0,0);
+    \draw (2,2) to[R, f<_=$I_2$, a=3.3<\kilo\ohm>] (4,2) to[R, f<_=$I_3$, a^=1.2<\kilo\ohm>] (4,0.55) to[battery1, a^=60<\volt>] (4,0) -- (0,0);
+    \draw (4,0) -- (5,0);
+    \draw (4,2) -- (5,2);
+    
+    \draw (5,0) node[ocirc] {};
+    \draw (5,2) node[ocirc] {};
+    
+    \draw (5.75,1) node[] {$E_{TH}$};
+    \draw [decorate, decoration={brace,amplitude=10pt,mirror,raise=2pt}] (5.25,0) -- (5.25,2) node []{};
+    
+    \draw (2,-0.25) node {0};
+    \draw (2,2.25) node {A};
+    \draw (4,2.25) node {B};
+    \draw (4.25,0.75) node {C};
+    \end{circuitikz}
+\end{figure}
+
+\begin{align*}
+    A&: 10 + I_2 = I_1          & 10 + \frac{V_B - V_A}{3.3} &= \frac{V_A}{4.7} 
+        & V_A\bigg(\frac{1}{4.7}+\frac{1}{3.3}\bigg) - V_B\bigg(\frac{1}{3.3}\bigg) &= 10 \\
+    B&: I_3 = I_2               & \frac{60 - V_B}{1.2} &= \frac{V_B - V_A}{3.3} 
+        & -V_A\bigg(\frac{1}{3.3}\bigg) - V_B\bigg(\frac{1}{3.3}+\frac{1}{1.2}\bigg) &= \frac{60}{1.2} \\
+    C&: V_C = \SI{60}{\volt}    & V_C &= \SI{60}{\volt} & &
+\end{align*}
+
+\begin{align*}
+    A&: V_A \approx \SI{53.64}{\volt} & &\\
+    B&: V_B \approx \SI{58.30}{\volt} & \therefore E_{TH} &\approx \SI{58.30}{\volt} \\
+    C&: V_C = \SI{60}{\volt} & &
+\end{align*}
+
+\begin{figure} [h!]
+    \centering
+    \begin{circuitikz} [scale=2, american] 
+    \draw (2,0) -- (0,0) to[battery1, l=$E_{TH}$, a=58.30<\volt>] (0, 2) to[R, l=$R_{TH}$, a=1.04<\kilo\ohm>] (2,2);
+    
+    \node[draw,align=left] at (3.5,1) {$V=58.30+1.04I$};
+    
+    \draw (2,0) node[ocirc] {};
+    \draw (2,2) node[ocirc] {};
+    
+    \draw [decorate, decoration={brace,amplitude=10pt,mirror,raise=2pt}] (2.25,0) -- (2.25,2) node []{};
+    \end{circuitikz}
+\end{figure}
+
+\end{document}
