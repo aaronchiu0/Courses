@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML" async></script>
+<script type="text/javascript">
+	window.MathJax = {
+		tex2jax: {
+			inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+			displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+			processEscapes: true
+		}
+	};
+</script>
+<head>
+	<title>Pre Integration</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>	
+	<h1>Mathematics II</h1>
+	<a href="index.html">Home</a>
+	
+	<h2>Fundamental Theorems of Calculus (FTC)</h2>
+	<!-- FTC Part 1-->
+	<h3>Part 1</h3>
+	<p>
+    \begin{align*}
+        \text{If: } g(x) = \int_a^x f(t) dt && \text{Then: } g'(x) = f(x)
+    \end{align*}
+    $$ \text{Alternatively: } \frac{d}{dx}\int_a^x f(t) dt = f(x) $$
+
+	Take note that the upper limit is in the form of $\int_a^x f(t) dt$ and not any other form.
+	</p>
+	
+	<button class="collapsible">Example</button>
+	<div class="content">
+		<p>
+			Evaluate: $ \displaystyle g'(x) = \int_a^{x^2} \sin(t) dt$
+			Due to the the integral not being the form of $\int_a^x f(t) dt$, we need to do a substitution.
+
+			\begin{align*}
+				g(x) &= \int_a^{x^2} \sin(t) dt & u &= x^2 \\
+				g(x) &= \int_a^u \sin(t) dt & \\
+				g'(u) &= \sin(u) &
+			\end{align*}
+
+			We need to undo our substitution, however cannot directly undo it. Therefore, we will need to use the chain rule.
+
+			\begin{align*}
+				\frac{dg}{du} &= \sin(u) & \\
+				\frac{dg}{dx}\frac{dx}{du} &= \sin(u) & \\
+				\frac{dg}{dx} &= \sin(u) \ \frac{du}{dx} & du &= 2x \ dx
+			\end{align*}
+
+			$$ \frac{dg}{dx} = \sin(x^2) \ 2x $$
+		</p>
+	</div>
+
+	<!-- Part 2 FTC -->
+	<h3>Part 2</h3>
+	$$\int_a^b f(x) \ dx = F(b) - F(a)$$
+    <center>Where $F$ is the anti derivative (integral) of $f$</center>
+	<p>
+		<b>Applications</b><br>
+		If a particle is defined by a speed of $v(x)$, Then the displacement and speed through the time $a \leq t \leq b$ are:
+		\begin{align*}
+			\overrightarrow{d} \ \text{(Displacement)} &= \int_a^b v(t) \ dt \\
+			\text{$d$ (Distance)} &= \int_a^b |v(t)| \ dt
+		\end{align*}
+	</p>
+	
+	<script src="functions.js"></script>
+</body>
+</html>

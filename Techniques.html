@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML" async></script>
+<script type="text/javascript">
+	window.MathJax = {
+		tex2jax: {
+			inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+			displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+			processEscapes: true
+		}
+	};
+</script>
+<head>
+	<title>Pre Integration</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>	
+	<h1>Mathematics II</h1>
+	<a href="index.html">Home</a>
+	
+	<h2>Integration Techniques</h2>
+	<!-- Substitution -->
+	<h3>Integration by Substitution</h3>
+	
+	<p>
+    \begin{align*}
+        \int f(g(x) \ g'(x) = \int f(u) \ du && \text{Where } u = g(x)
+    \end{align*}
+
+	<!-- Indefinite Integrals -->
+	<b>Indefinite Integrals</b> need to have their substitution undone.
+	<ul>
+		<li>Remember to substitute for $dx$ as well</li>
+		<li>You have to replace all occurrences of the original variables (No mixing of variables)</li>
+	</ul>
+	</p>
+	
+	<button class="collapsible">Example of a Substitution of an Indefinite Integral</button>
+	<div class="content">
+		<p>
+			Evaluate: $\displaystyle \int \frac{x+3}{\sqrt{x^2 + 6x}} \ dx$ <br>
+			We'll have to do a substitution for $x^2 + 6x$ as we don't know the integral of a function in a radical
+			\begin{align*}
+				&\phantom{{}={}} \int \frac{x+3}{\sqrt{x^2 + 6x}} \ dx & u &= x^2 + 6x \\
+				&= \int \frac{1}{2} \frac{du}{\sqrt{u}} & du &= (2x + 6) \ dx \\
+				&= \frac{1}{2}\int u^{-\tfrac{1}{2}} \ du & \frac{1}{2} \ du &= (x + 3) \ dx \\
+				&= \frac{1}{2}(\frac{u^{\tfrac{1}{2}}}{\tfrac{1}{2}}) + C & \\
+				&= u^{\tfrac{1}{2}} + C & \\
+				&= (x^2 + 6x)^{\tfrac{1}{2}} + C &
+			\end{align*}
+		</p>
+	</div>
+
+	<!-- Definite Integrals -->
+	<p><b>Definite Integrals</b> need to have their bounds changed.</p>
+	
+	<button class="collapsible">Example of a Substitution of an Definite Integral</button>
+	<div class="content">
+		<p>
+			Evaluate: $\displaystyle \int_0^2 \frac{x+3}{\sqrt{x^2 + 6x}} \ dx$ <br>
+			We've already done this integral from the last example. However, this time, it is a definite integral.
+
+			\begin{align*}
+				\int_0^2 \frac{x+3}{\sqrt{x^2 + 6x}} \ dx && u = x^2 + 6x && \frac{1}{2} \ du &= (x + 3) \ dx
+			\end{align*}
+
+			We must change the bounds of the integral using $u = x^2 + 6x$.
+
+			<div class="minipage">
+			<div class="leftpage">
+			<table class="ttable" align="center">
+				<tr> <th>x</th> <th>u</th> 	</tr>
+				<tr> <td>0</td> <td>0</td> 	</tr>
+				<tr> <td>2</td> <td>16</td> </tr>
+			</table>
+			</div>
+			
+			<div class="rightpage">
+			<center>
+			\begin{align*}
+				&\phantom{{}={}} \frac{1}{2}\int_0^{16} \frac{du}{\sqrt{u}} \ dx \\
+				&= u^{\tfrac{1}{2}}\big|_0^{16} \\
+				&= 16^{\tfrac{1}{2}}-0^{\tfrac{1}{2}} \\
+				&= 4
+			\end{align*}
+			</center>
+			</div>
+			<div class="clear"></div>
+			</div>
+		</p>
+	</div>
+
+	<!-- Integration of Symmetric Functions -->
+	<h3>Integration of Symmetric Functions</h3>
+	<p>
+    \begin{align*}
+        &\text{If $f$ is an even function, then $\int_{-a}^a f(x) \ dx = 2\int_0^a f(x) \ dx$} \\
+        &\text{If $f$ is an odd function, then $\int_{-a}^a f(x) \ dx = 0$}
+    \end{align*}
+	</p>
+
+	<!-- Integration by Parts -->
+	<h3>Integration by Parts</h3>
+	<p>
+    \begin{align*}
+        \int u \ dv = uv - \int v \ du && \text{If $u = f(x)$ and $v = g(x)$}
+    \end{align*}
+	</p>
+	<button class="collapsible">Example of a Recursive Integration by Parts</button>
+	<div class="content">
+		<p>
+			Find the integral of: $\displaystyle \int e^x\cos{2x} \ dx$ <br>
+			Determine what should be $u$ and what should $dv$:
+			
+			\begin{align*}
+				u &= e^x & dv &= \cos{2x} \ dx \\
+				du &= e^x \ dx & v &= \frac{\sin{2x}}{2}
+			\end{align*}
+			
+			\begin{align*}
+				&\phantom{{}={}} e^x \ \frac{\sin{2x}}{2} - \int \frac{\sin{2x}}{2} \ e^x \ dx \\
+				&= \frac{1}{2} \ e^x\sin{2x} - \frac{1}{2} \int \sin{2x} \ e^x \ dx
+			\end{align*}
+
+			We must do integration by parts once again.
+			\begin{align*}
+				u &= e^x & dv &= \sin{2x} \ dx \\
+				du &= e^x \ dx & v &= -\frac{\cos{2x}}{2}
+			\end{align*}
+			
+			\begin{align*}
+				&\phantom{{}={}} \frac{1}{2} \ e^x\sin{2x} - \frac{1}{2} \bigg(e^x \cdot -\frac{\cos{2x}}{2} - \int -\frac{\cos{2x}}{2} \ e^x \ dx \bigg) \\
+				&= \frac{1}{2} \ e^x\sin{2x} + \frac{1}{4} \ e^x \cos{2x} + \frac{1}{4} \int \cos{2x} \ e^x \ dx
+			\end{align*}
+			
+			We have the original integral so we are now in a position to subtract both side by it.
+
+			<div class="minipage">
+			<div class="leftpage">
+			\begin{align*}
+				\frac{3}{4} \int e^x\cos{2x} \ dx &= \frac{1}{2} \ e^x\sin{2x} + \frac{1}{4} \ e^x \cos{2x} \\
+				\int e^x\cos{2x} \ dx &= \frac{4}{3} \bigg(\frac{1}{2} \ e^x\sin{2x} + \frac{1}{4} \ e^x \cos{2x}\bigg)
+			\end{align*}
+			</div>
+			<div class="rightpage">
+				$$ =\frac{2}{3} \ e^x\sin{2x} + \frac{1}{3} \ e^x \cos{2x} $$
+			</div>
+			<div class="clear"></div>
+			</div>
+		</p>
+	</div>
+
+	<!-- Trigonometric Integrals -->
+	<h3>Trigonometric Integrals</h3>
+	<p>If in the form of $\displaystyle\int \sin^m x\cos^n x \ dx$ </p>
+	<h4>Odd Cosine Powers</h4>
+	<p>
+    Using the identity $\cos^2 x = 1 - \sin^2 x$
+    \begin{align*}
+        \int \sin^m x\cos^{2k+1} x \ dx &= \int \sin^m x(\cos^2 x)^k \cos{x} \ dx \\
+        &= \int \sin^m x(1-\sin^2 x)^k x \cos{x} \ dx 
+    \end{align*}
+    Then substitute $u = \sin{x}$
+	</p>
+	<h4>Odd Sine Powers</h4>
+	<p>
+    Using the identity $\sin^2 x = 1 - \cos^2 x$
+    \begin{align*}
+        \int \sin^{2k+1} x\cos^n x \ dx &= \int (\sin^2 x)^k \cos^n x \sin{x} \ dx \\
+        &= \int (1-\cos^2 x)^k \cos^n x \sin{x} \ dx 
+    \end{align*}
+    Then substitute $u = \cos{x}$
+	</p>
+	<h4>Both Even Sine & Cosine Powers</h4>
+	<p>
+    These can be reduced using the following identities
+    \begin{align*}
+        \sin^2 x = \frac{1}{2}(1 - \cos 2x) && \cos^2 x = \frac{1}{2}(1 + \cos 2x)
+    \end{align*}
+    $$\sin x \cos x = \frac{1}{2} \sin 2x$$
+	</p>
+	
+	<p>
+		If in the form of (1) $\displaystyle\int \sin mx \ \cos nx \ dx$, (2) $\displaystyle\int \sin mx \ \sin nx \ dx$, or (3) $\displaystyle\int \cos mx \ \cos nx \ dx$
+		\begin{align}
+			\sin A \ \cos B &= \frac{1}{2} \ [\sin(A-B)+\sin(A+B)] \\
+			\sin A \ \sin B &= \frac{1}{2} \ [\cos(A-B)-\cos(A+B)] \\
+			\cos A \ \cos B &= \frac{1}{2} \ [\cos(A-B)+\cos(A+B)]
+		\end{align}
+	</p>
+
+	<p>If in the form of $\displaystyle\int \tan^m x\sec^n x \ dx$</p>
+\begin{mdframed_title}{Even Secant Powers}
+    Using the identity $\sec^2 x = 1 + \tan^2 x$
+    \begin{align*}
+        \int \tan^m x\sec^{2k} x \ dx &= \int \tan^m x(\sec^2 x)^{k-1} \sec^2 x \ dx \\
+        &= \int \tan^m x(1+\tan^2 x)^{k-1} \sec{x} \ dx 
+    \end{align*}
+    Then substitute $u = \tan{x}$
+\end{mdframed_title}
+
+\begin{mdframed_title}{Odd Tangent Powers}
+    Using the identity $\tan^2 x = \sec^2 x - 1$
+    \begin{align*}
+        \int \tan^{2k+1} x\sec^n x \ dx &= \int (\tan^2 x)^k \sec^{n-1} x \sec x \tan x\ dx \\
+        &= \int (\sec^2 x-1)^k \sec^{n-1} x \sec x \tan x\ dx 
+    \end{align*}
+    Then substitute $u = \sec{x}$
+\end{mdframed_title}
+
+\begin{mdframed_title}{Odd Secant \& Even Tangent}
+    The only way to solve these is to use integration by parts
+\end{mdframed_title}
+\referenceExample{subsubsec:Trigonometric Integrals}
+
+\newpage
+
+% Trigonometric Substitution
+\subsection{Trigonometric Substitution}
+For when the integral contains $\sqrt{a^2+x^2}$ or similar comes up.
+
+\begin{mdframed_title}{Table of Different Forms and Their Substitution}
+\begin{center}
+    \newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+    \renewcommand{\arraystretch}{1.9}
+        \begin{tabular}{C{48 mm}|C{48 mm}|C{48 mm}}
+        \text{Form} & \text{Substitution} & \text{Identity} \\ \hline
+        $\displaystyle \sqrt{a^2-x^2}$ & $\displaystyle x=a\sin \theta$ & $\displaystyle 1-\sin^2\theta=\cos^2\theta$ \\
+        $\displaystyle \sqrt{a^2+x^2}$ & $\displaystyle x=a\tan \theta$ & $\displaystyle 1+\tan^2\theta=\sec^2\theta$ \\
+        $\displaystyle \sqrt{x^2-a^2}$ & $\displaystyle x=a\sec \theta$ & $\displaystyle \sec^2\theta-1=\tan^2\theta$
+        \end{tabular}
+    \renewcommand{\arraystretch}{1}    
+\end{center}
+\end{mdframed_title}
+
+\referenceExample{subsubsec:Trigonometric Substitution}
+
+\subsection{Integration by Partial Fraction Decomposition}
+These come in the form of $\displaystyle f(x)=\frac{P(x)}{Q(x)}$ where both $P(x)$ and $Q(x)$ are polynomials
+
+\textbf{Step 1}
+\begin{itemize}
+    \item If the degree of $P&ltQ$ then this is called \textbf{Proper} and we can move onto the next step
+    \item If the degree of $P\geq Q$ then this is called \textbf{Improper} and we must reduce it to a proper fraction using either long or short division to obtain a function in the form of:
+\end{itemize}
+$$f(x)=\frac{P(x)}{Q(x)}=S(x)+\frac{R(x)}{Q(x)}$$
+
+\textbf{Step 2} \\
+Reduce the denominator $Q(x)$ into either linear or irreducible quadratic factors:
+$$ax+b \quad \text{or} \quad ax^2+bx+c \ \text{where} \ b^2-4ac<0$$
+
+\textbf{Step 3 (Denominator)}\\
+We can split the the whole function into forms of either:
+$$\frac{A}{ax+b} \quad \text{or} \quad \frac{Ax+B}{ax^2+bx+c}$$
+
+\textbf{Case 1: } We can express $Q(x)$ as a product of linear factors
+$$\frac{R(x)}{Q(x)}=\sum_{i=1}^n\frac{A_i}{a_ix+b_i}$$
+
+\textbf{Case 2: } We can express $Q(x)$ as a product of linear factors where some a repeated  (Where $a_ix+b_i$ is repeated $r$ times)
+$$\frac{A_1}{a_ix+b_i}+\frac{A_i}{(a_ix+b_i)^2}+\dots+\frac{A_i}{(a_ix+b_i)^r}$$
+
+\textbf{Case 3: } We can express $Q(x)$ as a product of linear factors and quadratic factors
+$$\frac{A_ix+B}{a_ix^2+b_ix+c_i}$$
+
+\textbf{Case 4: } We can express $Q(x)$ as a product of linear factors and quadratic factors where some a repeated (Where $a_ix^2+b_ix+c_i$ is repeated $r$ times)
+$$\frac{A_ix+B}{a_ix^2+b_ix+c_i}+\frac{A_ix+B}{(a_ix^2+b_ix+c_i)^2}+\dots+\frac{A_ix+B}{(a_ix^2+b_ix+c_i)^r}$$
+These terms can be integrated by substitution and \textbf{completing the square.}
+
+\textbf{Step 3 (Numerator)}
+To determine the coefficients given $\displaystyle\frac{R(x)}{Q(x)}$ follow this procedure.
+
+\begin{align*}
+    \frac{R(x)}{Q(x)}&=\sum_{i=1}^n\frac{A_i}{a_ix+b_i} \\
+    R(x)&=\sum_{i=1}^n A_i \ \frac{Q(x)}{a_ix+b_i}
+\end{align*}
+
+After dividing, distribute $A_i$, and then collect like terms in a matrix from and solve for the coefficients. We can also set $x$ in a way that makes the other factors 0. \\
+\referenceExample{subsubsec:Partial Fraction Decomposition}
+	
+	<script src="functions.js"></script>
+</body>
+</html>

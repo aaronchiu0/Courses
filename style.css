@@ -1,0 +1,63 @@
+.collapsible {
+  background-color: #777;
+  color: white;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+
+.active, .collapsible:hover {
+  background-color: #555;
+}
+
+.content {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color: #f1f1f1;
+}
+
+/* pages to sit side by side */
+.minipage {
+	width: vw;
+}
+
+.leftpage {
+	float: left;
+	width: 45vw;
+}
+
+.rightpage {
+	float: right;
+	width: 45vw;
+}
+
+/* table properties*/
+table.ttable { 
+    padding: 5px; 
+	text-align: center;
+	vertical-align: middle;
+    border-collapse: collapse; 
+}
+table.ttable th { 
+    border-bottom: 1px solid black;
+    padding: 5px; 
+	text-align: center;
+	vertical-align: middle;
+	width: 30px;
+}
+ 
+table.ttable td { 
+    padding: 5px; 
+	text-align: center;
+	vertical-align: middle;
+	width: 30px;
+ }
+ 
+table.ttable td:first-child {
+  border-right: 1px solid black;
+}
