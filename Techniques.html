@@ -16,9 +16,17 @@
 </head>
 
 <body>	
-	<h1>Mathematics II</h1>
-	<a href="index.html">Home</a>
+	<ul class="vertical-navigation">
+		<li><a href="index.html">Home</a></li>
+		<li><a href="Pre Integration.html">Pre Integration</a></li>
+		<li><a href="FTC.html">Fundamental Theorems of Calculus (FTC)</a></li>
+		<li><a class="active" href="Techniques.html">Integration Techniques</a></li>
+		<li><a href="Applications.html">Applications of Integration</a></li>
+	</ul>
 	
+	<div style="margin-left:25%;padding:1px 16px;height:1000px;">
+	<h1>Mathematics II</h1>
+		
 	<h2>Integration Techniques</h2>
 	<!-- Substitution -->
 	<h3>Integration by Substitution</h3>
@@ -107,6 +115,7 @@
         \int u \ dv = uv - \int v \ du && \text{If $u = f(x)$ and $v = g(x)$}
     \end{align*}
 	</p>
+	
 	<button class="collapsible">Example of a Recursive Integration by Parts</button>
 	<div class="content">
 		<p>
@@ -137,14 +146,14 @@
 			We have the original integral so we are now in a position to subtract both side by it.
 
 			<div class="minipage">
-			<div class="leftpage">
-			\begin{align*}
-				\frac{3}{4} \int e^x\cos{2x} \ dx &= \frac{1}{2} \ e^x\sin{2x} + \frac{1}{4} \ e^x \cos{2x} \\
-				\int e^x\cos{2x} \ dx &= \frac{4}{3} \bigg(\frac{1}{2} \ e^x\sin{2x} + \frac{1}{4} \ e^x \cos{2x}\bigg)
-			\end{align*}
-			</div>
 			<div class="rightpage">
 				$$ =\frac{2}{3} \ e^x\sin{2x} + \frac{1}{3} \ e^x \cos{2x} $$
+			</div>
+			<div class="leftpage">
+				\begin{align*}
+					\frac{3}{4} \int e^x\cos{2x} \ dx &= \frac{1}{2} \ e^x\sin{2x} + \frac{1}{4} \ e^x \cos{2x} \\
+					\int e^x\cos{2x} \ dx &= \frac{4}{3} \bigg(\frac{1}{2} \ e^x\sin{2x} + \frac{1}{4} \ e^x \cos{2x}\bigg)
+				\end{align*}
 			</div>
 			<div class="clear"></div>
 			</div>
@@ -191,92 +200,220 @@
 	</p>
 
 	<p>If in the form of $\displaystyle\int \tan^m x\sec^n x \ dx$</p>
-\begin{mdframed_title}{Even Secant Powers}
-    Using the identity $\sec^2 x = 1 + \tan^2 x$
-    \begin{align*}
-        \int \tan^m x\sec^{2k} x \ dx &= \int \tan^m x(\sec^2 x)^{k-1} \sec^2 x \ dx \\
-        &= \int \tan^m x(1+\tan^2 x)^{k-1} \sec{x} \ dx 
-    \end{align*}
-    Then substitute $u = \tan{x}$
-\end{mdframed_title}
+	<h4>Even Secant Powers</h4>
+	<p>
+		Using the identity $\sec^2 x = 1 + \tan^2 x$
+		\begin{align*}
+			\int \tan^m x\sec^{2k} x \ dx &= \int \tan^m x(\sec^2 x)^{k-1} \sec^2 x \ dx \\
+			&= \int \tan^m x(1+\tan^2 x)^{k-1} \sec{x} \ dx 
+		\end{align*}
+		Then substitute $u = \tan{x}$
+	</p>
 
-\begin{mdframed_title}{Odd Tangent Powers}
-    Using the identity $\tan^2 x = \sec^2 x - 1$
-    \begin{align*}
-        \int \tan^{2k+1} x\sec^n x \ dx &= \int (\tan^2 x)^k \sec^{n-1} x \sec x \tan x\ dx \\
-        &= \int (\sec^2 x-1)^k \sec^{n-1} x \sec x \tan x\ dx 
-    \end{align*}
-    Then substitute $u = \sec{x}$
-\end{mdframed_title}
+	<h4>Odd Tangent Powers</h4>
+	<p>
+		Using the identity $\tan^2 x = \sec^2 x - 1$
+		\begin{align*}
+			\int \tan^{2k+1} x\sec^n x \ dx &= \int (\tan^2 x)^k \sec^{n-1} x \sec x \tan x\ dx \\
+			&= \int (\sec^2 x-1)^k \sec^{n-1} x \sec x \tan x\ dx 
+		\end{align*}
+		Then substitute $u = \sec{x}$
+	</p>
 
-\begin{mdframed_title}{Odd Secant \& Even Tangent}
-    The only way to solve these is to use integration by parts
-\end{mdframed_title}
-\referenceExample{subsubsec:Trigonometric Integrals}
+	<h4>Odd Secant & Even Tangent</h4>
+    <p>The only way to solve these is to use integration by parts</p>
+	
+	<button class="collapsible">Example of a Trigonometric Integral</button>
+	<div class="content">
+		<p>
+			Evaluate: $\displaystyle \int \sin^5 x \cos^2x \ dx$ <br>
+			Since the power of sin is odd we will have to substitute $u = \cos x$ after some manipulation to get it into the right form
 
-\newpage
+			\begin{align*}
+				&= \int \sin^4 x \cos^2 x \sin x \ dx       & u &= \cos x\\
+				&= \int (1-\cos^2 x)^2 \cos^2 x \sin x \ dx & du &= -\sin x \ dx\\
+				&= -\int (1 - u^2)^2 \ u^2 \ du                & -du &= \sin x \ dx \\
+				&= -\int (1 - 2u^2 + u^4) \ u^2 \ du \\
+				&= -\int (u^2 - 2u^4 + u^6) \ du \\
+				&= -(\frac{1}{3} u^3 - \frac{2}{5} u^5 + \frac{1}{7} u^7) + C
+			\end{align*}
 
-% Trigonometric Substitution
-\subsection{Trigonometric Substitution}
-For when the integral contains $\sqrt{a^2+x^2}$ or similar comes up.
+			$$ -\frac{1}{3} \cos^3 x + \frac{2}{5} \cos^5 x - \frac{1}{7} \cos^7 x + C $$
+		</p>
+	</div>
 
-\begin{mdframed_title}{Table of Different Forms and Their Substitution}
-\begin{center}
-    \newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
-    \renewcommand{\arraystretch}{1.9}
-        \begin{tabular}{C{48 mm}|C{48 mm}|C{48 mm}}
-        \text{Form} & \text{Substitution} & \text{Identity} \\ \hline
-        $\displaystyle \sqrt{a^2-x^2}$ & $\displaystyle x=a\sin \theta$ & $\displaystyle 1-\sin^2\theta=\cos^2\theta$ \\
-        $\displaystyle \sqrt{a^2+x^2}$ & $\displaystyle x=a\tan \theta$ & $\displaystyle 1+\tan^2\theta=\sec^2\theta$ \\
-        $\displaystyle \sqrt{x^2-a^2}$ & $\displaystyle x=a\sec \theta$ & $\displaystyle \sec^2\theta-1=\tan^2\theta$
-        \end{tabular}
-    \renewcommand{\arraystretch}{1}    
-\end{center}
-\end{mdframed_title}
+	<!-- Trigonometric Substitution -->
+	<h3>Trigonometric Substitution</h3>
+	<p>For when the integral contains $\sqrt{a^2+x^2}$ or similar comes up.</p>
 
-\referenceExample{subsubsec:Trigonometric Substitution}
+	<h4>Table of Different Forms and Their Substitution</h4>
+	<table class="generic" align="center" style="margin-bottom: 30px;">
+		<tr> <th>Form</th> <th>Substitution</th> <th>Identity</th> </tr>
+		<tr> <td>$\displaystyle \sqrt{a^2-x^2}$</td> <td>$\displaystyle x=a\sin \theta$</td> <td>$\displaystyle 1-\sin^2\theta=\cos^2\theta$</td> </tr>
+        <tr> <td>$\displaystyle \sqrt{a^2+x^2}$</td> <td>$\displaystyle x=a\tan \theta$</td> <td>$\displaystyle 1+\tan^2\theta=\sec^2\theta$</td> </tr>
+        <tr> <td>$\displaystyle \sqrt{x^2-a^2}$</td> <td>$\displaystyle x=a\sec \theta$</td> <td>$\displaystyle \sec^2\theta-1=\tan^2\theta$</td> </tr>
+	</table>
 
-\subsection{Integration by Partial Fraction Decomposition}
-These come in the form of $\displaystyle f(x)=\frac{P(x)}{Q(x)}$ where both $P(x)$ and $Q(x)$ are polynomials
+	<button class="collapsible">Example of a Trigonometric Substitution</button>
+	<div class="content">
+		<p>
+			Evaluate: $\displaystyle \int \frac{\sqrt{16-x^2}}{x^2} \ dx$ <br>
+			We can immediate recognize that the radical is in the form of $\sqrt{a^2-x^2}$ so therefore, we will substitute $x=a\sin\theta$
+			\begin{align*}
+				&\phantom{{}={}} \sqrt{4^2-x^2} & x&=4\sin\theta\\
+				&= \sqrt{4^2-(4\sin\theta)^2} & dx&=4\cos\theta \ d\theta \\
+				&= \sqrt{4^2(1-\sin^2\theta)} & \\
+				&= 4\sqrt{\cos^2\theta} & \\
+				&= 4\cos\theta &
+			\end{align*}
 
-\textbf{Step 1}
-\begin{itemize}
-    \item If the degree of $P&ltQ$ then this is called \textbf{Proper} and we can move onto the next step
-    \item If the degree of $P\geq Q$ then this is called \textbf{Improper} and we must reduce it to a proper fraction using either long or short division to obtain a function in the form of:
-\end{itemize}
-$$f(x)=\frac{P(x)}{Q(x)}=S(x)+\frac{R(x)}{Q(x)}$$
+			Substitute back into the the original equation.
 
-\textbf{Step 2} \\
-Reduce the denominator $Q(x)$ into either linear or irreducible quadratic factors:
-$$ax+b \quad \text{or} \quad ax^2+bx+c \ \text{where} \ b^2-4ac<0$$
+			\begin{align*}
+				&\phantom{{}={}} \int \frac{4\cos\theta}{(4\sin\theta)^2} \ 4\cos\theta \ d\theta \\
+				&= \int \frac{16\cos^2\theta}{16\sin^2\theta} \ d\theta \\
+				&= \int \cot^2\theta \ d\theta \\
+				&= \int (\csc^2\theta - 1)\ d\theta \\
+				&= -\cot\theta - \theta + C
+			\end{align*}
 
-\textbf{Step 3 (Denominator)}\\
-We can split the the whole function into forms of either:
-$$\frac{A}{ax+b} \quad \text{or} \quad \frac{Ax+B}{ax^2+bx+c}$$
+			We have to undo our substitution turning $\theta$ back into $x$. We can use a right triangle to help.
+			
+			<div class="minipage">
+			<div class="rightpage">
+				\begin{align*}
+					x &= 4\sin\theta \\
+					\frac{x}{4} &= \sin\theta \\
+					&= -\frac{\sqrt{16-x^2}}{4} - \arcsin\frac{x}{4} + C
+				\end{align*}
+			</div>
+			<div class="leftpage">
+				<img src="triangle.png" alt="Trigonometric Triangle" style="float:left;width:258px;height:197px;"> <!-- originally width:369px; height:281px; -->
+			</div>
+			<div class="clear"></div>
+			</div>
+		</p>
+	</div>
+	
+	<!-- Integration by Partial Fraction Decomposition -->
+	<h3>Integration by Partial Fraction Decomposition</h4>
+	<p>
+		These come in the form of $\displaystyle f(x)=\frac{P(x)}{Q(x)}$ where both $P(x)$ and $Q(x)$ are polynomials <br>
 
-\textbf{Case 1: } We can express $Q(x)$ as a product of linear factors
-$$\frac{R(x)}{Q(x)}=\sum_{i=1}^n\frac{A_i}{a_ix+b_i}$$
+		<b>Step 1</b>
+		<ul>
+			<li>If the degree of $P&ltQ$ then this is called <b>Proper</b> and we can move onto the next step</li>
+			<li>If the degree of $P\geq Q$ then this is called <b>Improper</b> and we must reduce it to a proper fraction using either long or short division to obtain a function in the form of:</li>
+		</ul>
+		$$f(x)=\frac{P(x)}{Q(x)}=S(x)+\frac{R(x)}{Q(x)}$$
 
-\textbf{Case 2: } We can express $Q(x)$ as a product of linear factors where some a repeated  (Where $a_ix+b_i$ is repeated $r$ times)
-$$\frac{A_1}{a_ix+b_i}+\frac{A_i}{(a_ix+b_i)^2}+\dots+\frac{A_i}{(a_ix+b_i)^r}$$
+		<b>Step 2</b> <br>
+		Reduce the denominator $Q(x)$ into either linear or irreducible quadratic factors:
+		$$ax+b \quad \text{or} \quad ax^2+bx+c \ \text{where} \ b^2-4ac<0$$
 
-\textbf{Case 3: } We can express $Q(x)$ as a product of linear factors and quadratic factors
-$$\frac{A_ix+B}{a_ix^2+b_ix+c_i}$$
+		<b>Step 3 (Denominator)</b> <br>
+		We can split the the whole function into forms of either:
+		$$\frac{A}{ax+b} \quad \text{or} \quad \frac{Ax+B}{ax^2+bx+c}$$
 
-\textbf{Case 4: } We can express $Q(x)$ as a product of linear factors and quadratic factors where some a repeated (Where $a_ix^2+b_ix+c_i$ is repeated $r$ times)
-$$\frac{A_ix+B}{a_ix^2+b_ix+c_i}+\frac{A_ix+B}{(a_ix^2+b_ix+c_i)^2}+\dots+\frac{A_ix+B}{(a_ix^2+b_ix+c_i)^r}$$
-These terms can be integrated by substitution and \textbf{completing the square.}
+		<b>Case 1:</b> We can express $Q(x)$ as a product of linear factors
+		$$\frac{R(x)}{Q(x)}=\sum_{i=1}^n\frac{A_i}{a_ix+b_i}$$
 
-\textbf{Step 3 (Numerator)}
-To determine the coefficients given $\displaystyle\frac{R(x)}{Q(x)}$ follow this procedure.
+		<b>Case 2:</b> We can express $Q(x)$ as a product of linear factors where some a repeated  (Where $a_ix+b_i$ is repeated $r$ times)
+		$$\frac{A_1}{a_ix+b_i}+\frac{A_i}{(a_ix+b_i)^2}+\dots+\frac{A_i}{(a_ix+b_i)^r}$$
 
-\begin{align*}
-    \frac{R(x)}{Q(x)}&=\sum_{i=1}^n\frac{A_i}{a_ix+b_i} \\
-    R(x)&=\sum_{i=1}^n A_i \ \frac{Q(x)}{a_ix+b_i}
-\end{align*}
+		<b>Case 3:</b> We can express $Q(x)$ as a product of linear factors and quadratic factors
+		$$\frac{A_ix+B}{a_ix^2+b_ix+c_i}$$
 
-After dividing, distribute $A_i$, and then collect like terms in a matrix from and solve for the coefficients. We can also set $x$ in a way that makes the other factors 0. \\
-\referenceExample{subsubsec:Partial Fraction Decomposition}
+		<b>Case 4:</b> We can express $Q(x)$ as a product of linear factors and quadratic factors where some a repeated (Where $a_ix^2+b_ix+c_i$ is repeated $r$ times)
+		$$\frac{A_ix+B}{a_ix^2+b_ix+c_i}+\frac{A_ix+B}{(a_ix^2+b_ix+c_i)^2}+\dots+\frac{A_ix+B}{(a_ix^2+b_ix+c_i)^r}$$
+		These terms can be integrated by substitution and <b>completing the square.</b> <br> <br>
+
+		<b>Step 3 (Numerator)</b> <br>
+		To determine the coefficients given $\displaystyle\frac{R(x)}{Q(x)}$ follow this procedure.
+
+		\begin{align*}
+			\frac{R(x)}{Q(x)}&=\sum_{i=1}^n\frac{A_i}{a_ix+b_i} \\
+			R(x)&=\sum_{i=1}^n A_i \ \frac{Q(x)}{a_ix+b_i}
+		\end{align*}
+
+		After dividing, distribute $A_i$, and then collect like terms in a matrix from and solve for the coefficients. We can also set $x$ in a way that makes the other factors 0. \\
+	</p>
+	
+	<button class="collapsible">Example 1 of Partial Fraction Decomposition</button>
+	<div class="content">
+	<p>
+		Evaluate: $\displaystyle \int \frac{7x^2-5x+6}{x^3-10x^2+21x} \ dx$ <br>
+		The first step is to factor the denominator and then split into different fractions with numerators undetermined for now.
+		$$\frac{7x^2-5x+6}{x(x-3)(x-7)} = \frac{A}{x}+\frac{B}{x-3}+\frac{C}{x-7}$$
+
+		Multiply by the original (factored) denominator
+		\begin{align*}
+			&\phantom{{}={}}\frac{A}{x} \ x(x-3)(x-7) & &\phantom{{}={}}\frac{B}{x-3} \ x(x-3)(x-7) & &\phantom{{}={}}\frac{C}{x-7} \ x(x-3)(x-7) \\
+			&= A(x-3)(x-7) & &= Bx(x-7) & &= Cx(x-3)
+		\end{align*}
+
+		Set them equal to the denominator
+		$$7x^2-5x+6=A(x-3)(x-7) + Bx(x-7) + Cx(x-3)$$
+
+		Solve for the coefficients by letting $x=0,3,7$
+		\begin{align*}
+			x&=0 & 7(0)^2-5(0)+6 &= A[(0)-3][(0)-7] & A&= \frac{2}{7} \\
+			x&=3 & 7(3)^2-5(3)+6 &= B(3)[(3)-7]     & B&= -\frac{9}{2} \\
+			x&=7 & 7(7)^2-5(7)+ 6&= C(7)[(7)-3]     & C&= \frac{157}{14} \\
+		\end{align*}
+
+		We can now go back to the original integral
+
+		$$\int \frac{7x^2-5x+6}{x^3-10x^2+21x} \ dx = \frac{2}{7} \int \frac{dx}{x} -\frac{9}{2}\int\frac{dx}{x-3} +\frac{157}{14}\int\frac{dx}{x-7}$$
+
+		\frac{2}{7}\ln|x|-\frac{9}{2}\ln|x-3|+\frac{157}{14}\ln|x-7|+C
+	</p>
+	</div>
+
+	<button class="collapsible">Example 2 of Partial Fraction Decomposition</button>
+	<div class="content">
+	<p>
+		Evaluate: $\displaystyle \int \frac{4x^2+5x+2}{4x^2+4x+3} \ dx$ <br>
+		Since the degree of the numerator is greater or equal to the denominator, we must first use long division <br>
+		This results in $1$ as the quotient and $x-1$ as the remainder <br>
+		In short:
+		
+		\begin{align*}
+			\frac{4x^2+5x+2}{4x^2+4x+3}=1+\frac{x-1}{4x^2+4x+3} && \int 1 dx = x
+		\end{align*}
+
+		Complete the square of the denominator
+		\begin{align*}
+			4x^2+4x+3 &= 4\bigg(x^2+x+\frac{3}{4}\bigg) \\
+			&= 4\bigg(x^2+x+\bigg(\frac{1}{2}\bigg)^2-\bigg(\frac{1}{2}\bigg)^2+\frac{3}{4}\bigg) \\
+			&= 4\bigg(x+\frac{1}{2}\bigg)^2+2
+		\end{align*}
+
+		Make the substitution of the square (i.e. $\displaystyle u=x+\frac{1}{2}$)
+
+		\begin{align*}
+			&\phantom{{}={}}\int\frac{x-1}{4x^2+4x+3} \ dx & u &= x+\frac{1}{2} \\
+			&= \int\frac{u-\frac{1}{2}-1}{4u^2+2} \ du     & du &= dx \\
+			&= \int\frac{u-\frac{3}{2}}{4u^2+2}  \ du      & x &= u-\frac{1}{2}
+		\end{align*}
+
+		Now it is in a form we can work with
+		\begin{align*}
+			\frac{u-\frac{3}{2}}{4u^2+2} &= \frac{u}{4u^2+2} - \frac{\frac{3}{2}}{4u^2+2}\\
+		\end{align*}
+
+		Take the integral for what we have now, using what techniques we know
+		\begin{align*}
+			&\phantom{{}={}}\frac{1}{2}\int\frac{u}{2u^2+1} \ du- \frac{3}{4}\int\frac{1}{2u^2+1} \ du\\
+			&= \frac{1}{2} \ \frac{1}{4} \ln|2u^2+1|-\frac{3}{8} \ \frac{1}{\sqrt{2}}\arctan (\sqrt{2}u) + C
+		\end{align*}
+
+		Substitute back in what we have
+		$$x+\frac{1}{8} \ln|2(x+\frac{1}{2})^2+1|-\frac{3}{8\sqrt{2}} \arctan (\sqrt{2}(x+\frac{1}{2})) + C$$
+	</p>
+	</div>
+	
+	</div>
 	
 	<script src="functions.js"></script>
 </body>
