@@ -1,12 +1,24 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>Javascript</title>
-		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
-	</head>
-	<body>
-		<p>
-  			When \(a \ne 0\), there are two solutions to \(ax^2 + bx + c = 0\) and they are $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$
-		</p>
-	</body>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+<script type="text/javascript">
+  window.MathJax = {
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+	  displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+      processEscapes: true
+    }
+  };
+</script>
+<script type="text/javascript" src="path-to-MathJax/MathJax.js?config=TeX-AMS_HTML">
+</script>
+
+<head>
+	<title>Courses</title>
+</head>
+
+<body>
+	<h1>Mathematics II</h1>
+	<a href="Pre Integration.html">Pre Integration</a>
+</body>
 </html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+<script type="text/javascript">
+	window.MathJax = {
+		tex2jax: {
+			inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+			processEscapes: true
+		}
+	};
+</script>
+<script type="text/javascript" src="path-to-MathJax/MathJax.js?config=TeX-AMS_HTML">
+</script>
+
+<head>
+	<title>Pre Integration</title>
+</head>
+
+<body>
+	<h1>Mathematics II</h1>
+	<a href="index.html">Home</a>
+	
+	<h2>Pre - Integration</h2>
+	<h3>Riemann Sums</h3>
+	<p>
+  		The area under a curve can be split into multiple different rectangles. Adding the rectangles results in the total area.
+		\begin{align*}
+			y = f(x); \ a \leq x \leq b; \ \text{with $n$ sub intervals}
+		\end{align*}
+	</p>
+	<center>
+		<h4>Using Left Endpoints</h4>
+		<p>
+			\begin{align*}
+				R_l = \sum_{i = 1}^n f(x_i) \Delta x && x_i=a+i \Delta x -  \Delta x && \Delta x = \frac{b - a}{n}
+			\end{align*}
+		</p>
+		
+		<h4>Using Right Endpoints</h4>
+		<p>
+			\begin{align*}
+				R_r = \sum_{i = 1}^n f(x_i) \Delta x && x_i=a+i \Delta x && \Delta x = \frac{b - a}{n}
+			\end{align*}
+		</p>
+		
+		<h4>Using Midpoints (Average)</h4>
+		<p>
+			\begin{align*}
+				R_m = \sum_{i = 1}^n f(\bar{x_i}) \Delta x && \bar{x_i}=a+i \Delta x -\frac{1}{2} \Delta x && \Delta x = \frac{b - a}{n}
+			\end{align*}
+		</p>
+	</center>
+	<p>When $n$ is small, this results in areas that are not taken into account resulting in an inaccurate area.</p>
+	
+	<h3>Definite Integral</h3>
+	<p>
+		When there are an infinitesimal amount of sub intervals, this results in the actual area under the curve.
+		\begin{align*}
+			\lim_{n\to\infty}\sum_{i = 1}^n f(x_i^*) = \int_a^b f(x)dx
+		\end{align*}
+		Where $\int_a^b f(x)dx$ is the definite integral of the functions running from a to b.
+	</p>
+</body>
+</html>
