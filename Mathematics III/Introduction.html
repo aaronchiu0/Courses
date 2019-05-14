@@ -9,6 +9,7 @@
 			processEscapes: true
 		}
 	};
+	
 </script>
 
 <head>
@@ -23,10 +24,17 @@
 		<div class="dropdown">
 			<button class="dropbtn">Mathematics II &#9662;</button>
 			<div class="dropdown-content">
-				<a href="Pre Integration.html">Pre Integration</a>
-				<a href="FTC.html">Fundamental Theorems of Calculus (FTC)</a>
-				<a href="Techniques.html">Integration Techniques</a>
-				<a href="Applications.html">Applications of Integration</a>
+				<a href="../Mathematics II/Pre Integration.html">Pre Integration</a>
+				<a href="../Mathematics II/FTC.html">Fundamental Theorems of Calculus (FTC)</a>
+				<a href="../Mathematics II/Techniques.html">Integration Techniques</a>
+				<a href="../Mathematics II/Applications.html">Applications of Integration</a>
+			</div>
+		</div> 
+		
+		<div class="dropdown">
+			<button class="dropbtn">Mathematics III &#9662;</button>
+			<div class="dropdown-content">
+				<a href="Introduction.html">Introduction & Definitions</a>
 			</div>
 		</div> 
 		
@@ -38,14 +46,71 @@
 		</div> 
 	</div>
 	
-	<div style="margin-left:10%; margin-right:10%;padding:1px 16px;">
-	<h1>Mathematics II</h1>
-	<!-- Applications of Integration -->
-	<h2>Applications of Integration</h2>
-	<!-- Velocity \& Net Change -->
-	<h3>Velocity & Net Change</h3>
-	<p>$$s=\sum_{i=1}^n f(t_t) \ \Delta t$$</p>
+	<div class="centerMargins">
+	<h1>Mathematics III</h1>
+	<!-- Introduction -->
+	<h2>Introduction to Differential Equations</h2>
+	<!-- Definitions -->
+	<h3>Definitions</h3>
+	<dl class="inline" style="--min-width:100px";>
+		<dt >ODE</dt> <dd><dfn id="ODE">Ordinary Differential Equations</dfn> are differential equations with one variable as a function of another</dd>
+		<dt>PDE</dt> <dd><dfn id="PDE">Partial Differential Equations</dfn> are differential equations with multiple variables as a function of another</dd>
+		<dt>Order</dt> <dd>This is the <i>order</i> of the highest derivative</dd>
+		<dt>Degree</dt> <dd>This is the <i>power</i> of the highest derivative</dd>
+		<dt>Linear</dt> <dd>No multiplications with other dependent variables and their derivatives</dd>
+		<dt>Non Linear</dt> <dd>Multiplications with other dependent variables or their derivatives</dd>
+	</dl>
 
+	<p>
+		<b>Initial Value Problems (IVP)</b> <br>
+		Problems that involve conditions that are given at the same value of the independent variable <br> <br>
+		<b>Boundary Value Problems (BVP)</b> <br>
+		Problems that involve conditions that are given at different values of the independent variable
+	</p>
+	
+	<h3>Proving a Solution of a Differential Equation</h3>
+	<ol>
+		<li>Find all derivatives needed from the solution according to the differential equation</li>
+		<li>Substitute the derivitves into the differtial equation</li>
+		<li>If the result is zero, then the solution is an actual solution. If it is not, it is not a solution</li>
+	</ol>
+	
+	<button class="collapsible">Example of Proving a solution to Differential Equation</button>
+	<div class="content">
+		<p>
+			Show that the given function $y = Ce^{5x}$ is a solution of $y'-5y=0$ where $C$ is constant. Find $C$ if $y(0)=2$. <br>
+			We will have to find the solution's derivative and substitute it into the differential equation.
+			
+			\begin{align*}
+				y &= Ce^{5x} &  y'-5y &= 0 \\
+				y' &= 5Ce^{5x} & 5Ce^{5x} - 5Ce^{5x} &= 0 \\
+				& & 0 &= 0
+			\end{align*}
+			
+			We have to next find what $C$ is by substituting the initial bounds.
+			
+			\begin{align*}
+				y(0) &= 2 \\
+				Ce^{5(0)} &= 2 \\
+				C &= 2
+			\end{align*}	
+		</p>
+	</div>
+	
+	<h3>Mathematical Models</h3>
+	
+	<dl class="inline">
+		<dt>ODE</dt> <dd><dfn id="ODE">Ordinary Differential Equations</dfn> are differential equations with one variable as a function of another</dd>
+		<dt>PDE</dt> <dd><dfn id="PDE">Partial Differential Equations</dfn> are differential equations with multiple variables as a function of another</dd>
+		<dt>Order</dt> <dd>This is the <i>order</i> of the highest derivative</dd>
+		<dt>Degree</dt> <dd>This is the <i>power</i> of the highest derivative</dd>
+		<dt>Linear</dt> <dd>No multiplications with other dependent variables and their derivatives</dd>
+		<dt>Non Linear</dt> <dd>Multiplications with other dependent variables or their derivatives</dd>
+	</dl>
+	
+	
+	
+	
 	<!-- Areas between Curves -->
 	<h3>Areas between Curves</h3>
 	<p>
