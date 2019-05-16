@@ -10,21 +10,169 @@
 		}
 	};
 </script>
-<script src="../functions.js"></script>
+<script src="../menu.js"></script>
 
 <head>
 	<title>Forms of Differential Equations</title>
 	<link rel="stylesheet" type="text/css" href="../style.css">
 </head>
 
-<body>	
+<body>
 	<script>MathIIIMenu()</script>
 	
 	<div class="centerMargins">
 	<h1>Mathematics III</h1>
-	<!-- Introduction -->
+	<!-- Forms of Differential Equations -->
 	<h2>Forms of Differential Equations</h2>	
 	
+	<!-- ODE -->
+	<h3>Ordinary Differential Equations (ODE)</h3>	
+	<p> 
+		Come in the form of $$\frac{dy}{dx} = f(x)$$
+		To solve these:
+		
+		\begin{align*}
+			dy &= f(x) \ dx & &\text{Multply by $dx$} \\
+			\int dy &= \int f(x) \ dx + C & &\text{Integrate both sides}\\
+			y &= \int f(x) \ dx + C
+		\end{align*}
+	
+		Apply initial conditions (ie find $C$) if given.
+	</p>
+	
+	<button class="collapsible">Example of an Ordinary Differential Equation</button>
+	<div class="content">
+		<p>
+			The acceleration of a particle is defined as $a(t)=t^2-t+1$, its initial position is $x(0)=2$, and its initial velocity is $v(0)=1$. Find the position function $x(t)$<br>
+			As we know:
+			
+			\begin{align*}
+				&\text{position} & &=x(t) \\
+				&\text{velocity} & &=\frac{dx}{dt} \\
+				&\text{acceleration} & &=\frac{d^2t}{dt^2} \text{or} \frac{dv}{dt}
+			\end{align*}
+			
+			We have to find the velocity function first.
+			
+			\begin{align*}
+				a(t) = \frac{dv}{dt} &= t^2-t+1 \\
+				dv &= [t^2-t+1] \ dt \\
+				\int dv &= \int[t^2-t+1] \ dt \\
+				v(t) &= \frac{1}{3}t^3-\frac{1}{2}t^2+t+C_1 \\
+			\end{align*}
+			
+			We have to solve for the initial condition of $C_1$ given $v(0)=1$.
+			
+			\begin{align*}
+				v(0) &= 1 \\
+				1 &= \frac{1}{3}(0)^3-\frac{1}{2}(0)^2+(0)+C_1 \\
+				C_1 &= 1
+			\end{align*}
+			
+			Our velocity function is $v(t)=\frac{1}{3}t^3-\frac{1}{2}t^2+t+1$. We can find the position function in a similar manner.
+			
+			\begin{align*}                                                                             
+				v(t) = \frac{dx}{dt} &= \frac{1}{3}t^3-\frac{1}{2}t^2+t+1 \\
+				dx &= [\frac{1}{3}t^3-\frac{1}{2}t^2+t+1] \ dt \\
+				\int dx &= \int[\frac{1}{3}t^3-\frac{1}{2}t^2+t+1] \ dt \\
+				x(t) &= \frac{1}{12}t^4-\frac{1}{6}t^3+\frac{1}{2}t^2+t+C_2 \\
+			\end{align*}
+			
+			We have to again solve for the initial condition of $C_2$ given $x(0)=2$.
+			
+			\begin{align*}
+				x(0) &= 2 \\
+				2 &= \frac{1}{12}(0)^4-\frac{1}{6}(0)^3+\frac{1}{2}(0)^2+(0)+C_2 \\
+				C_1 &= 2
+			\end{align*}
+			
+			$$ \therefore x(t)=\frac{1}{12}t^4-\frac{1}{6}t^3+\frac{1}{2}t^2+t+2 $$
+		</p>
 	</div>
+	
+	<!-- VSDE -->
+	<h3>Variable Seperable Differential Equations (VSDE)</h3>	
+	<p> 
+		Come in the form of $$\frac{dy}{dx} = f(x)g(y)$$
+		To solve these:
+		
+		\begin{align*}
+			\frac{dy}{g(y)} &= f(x) \ dx & &\text{Multiply by $dx$ and divide by $g(y)$} \\
+			\int \frac{dy}{g(y)} &= \int f(x) \ dx + C & &\text{Integrate both sides}
+		\end{align*}
+	
+		Apply initial conditions (ie find $C$) if given.
+	</p>
+	
+	<button class="collapsible">Example of a Variable Seperable Differential Equations</button>
+	<div class="content">
+		<p>
+			Solve the <abbr title="Initial Value Problem">IVP</abbr> given $\displaystyle y'-\frac{3-2x}{y}=0$ and $y(2)=-4$. <br>
+			
+			\begin{align*}
+				y'-\frac{3-2x}{y} &= 0 \\
+				\frac{dy}{dx} &= \frac{3-2x}{y} \\
+				y \ dy &= [3-2x] \ dx \\
+				\int y \ dy &= \int [3-2x] \ dx \\
+				\frac{1}{2}y^2 &= 3x-x^2+C \\
+				y^2 &= 6x-2x^2+2C \\
+				y &= \pm \sqrt{6x-2x^2+2C}
+			\end{align*}
+			
+			Now we have to solve for the initial value (ie $C$). Notice how the positive in the plus or minus is inadmissable to due the fact that it cannot equal $-4$ when positive.
+			
+			\begin{align*}
+				y(2) &= -4 \\
+				-4 &= -\sqrt{6(2)-2(2)^2+2C} \\
+				4 &= \sqrt{12-8+2C} \\
+				16 &= 4+2C \\
+				12 &= 2C \\
+			\end{align*}
+			
+			Notice how we don't need to solve for what $C$ is, only $2C$, as it is still a constant.
+			
+			$$ \therefore y=-\sqrt{6x-2x^2+12} $$
+		</p>
+	</div>
+	
+	<!-- LDE -->
+	<h3>Linear Differential Equations (LDE)</h3>	
+	<p> 
+		Come in the form of $$\frac{dy}{dx}+P(x)y=Q(x)$$
+		To solve these: $$\text{Multiply by $\displaystyle e^{\int P(x) \ dx}$}$$
+	
+		The left hand side will become a sum of two factors similar to the product rule when finding derivatives.
+		Apply initial conditions (ie find $C$) if given.
+	</p>
+	
+	<button class="collapsible">Example of a Linear Differential Equations</button>
+	<div class="content">
+		<p>
+			Solve $\displaystyle x^2y'+2xy=\sin^2x$. <br>
+			We have to get $y'$ but itself for it to be in its proper form.
+			
+			\begin{align*}
+				x^2y'+2xy &= \sin^2x & I(x) &= e^{\int \frac{2}{x} \ dx} \\
+				y'+\frac{2y}{x} &= \frac{\sin^2x}{x^2} & &= e^{2\ln|x|} \\
+				x^2y'+2xy &= \sin^2(x) & &= x^2 \\
+				\frac{d(x^2y)}{dx} &= \sin^2x & &\text{Take note that it will always take the form of $\displaystyle \frac{df}{dx}$} \\
+				\int d(x^2y) &= \int\sin^2x \ dx \\
+				x^2y &= \int\frac{1}{2}(1-\cos (2x)) \ dx \\
+				x^2y &= \int(\frac{1}{2}-\frac{1}{2}\cos (2x)) \ dx \\
+				
+			\end{align*}
+			
+			
+			
+			$$ \therefore  $$
+		</p>
+	</div>
+	
+	
+	
+	
+	</div>
+	
+	<script src="../functions.js"></script>
 </body>
 </html>
