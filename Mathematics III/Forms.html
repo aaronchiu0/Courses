@@ -28,7 +28,7 @@
 	<!-- ODE -->
 	<h3>Ordinary Differential Equations (ODE)</h3>	
 	<p> 
-		Come in the form of $$\frac{dy}{dx} = f(x)$$
+		Come in the form of: $$\frac{dy}{dx} = f(x)$$
 		To solve these:
 		
 		\begin{align*}
@@ -93,7 +93,7 @@
 	<!-- VSDE -->
 	<h3>Variable Seperable Differential Equations (VSDE)</h3>	
 	<p> 
-		Come in the form of $$\frac{dy}{dx} = f(x)g(y)$$
+		Come in the form of: $$\frac{dy}{dx} = f(x)g(y)$$
 		To solve these:
 		
 		\begin{align*}
@@ -104,7 +104,7 @@
 		Apply initial conditions (ie find $C$) if given.
 	</p>
 	
-	<button class="collapsible">Example of a Variable Seperable Differential Equations</button>
+	<button class="collapsible">Example of a Variable Seperable Differential Equation</button>
 	<div class="content">
 		<p>
 			Solve the <abbr title="Initial Value Problem">IVP</abbr> given $\displaystyle y'-\frac{3-2x}{y}=0$ and $y(2)=-4$. <br>
@@ -138,14 +138,14 @@
 	<!-- LDE -->
 	<h3>Linear Differential Equations (LDE)</h3>	
 	<p> 
-		Come in the form of $$\frac{dy}{dx}+P(x)y=Q(x)$$
+		Come in the form of: $$\frac{dy}{dx}+P(x)y=Q(x)$$
 		To solve these: $$\text{Multiply by $\displaystyle e^{\int P(x) \ dx}$}$$
 	
-		The left hand side will become a sum of two factors similar to the product rule when finding derivatives.
+		The left hand side will become a sum of two factors similar to the product rule when finding derivatives. <br>
 		Apply initial conditions (ie find $C$) if given.
 	</p>
 	
-	<button class="collapsible">Example of a Linear Differential Equations</button>
+	<button class="collapsible">Example of a Linear Differential Equation</button>
 	<div class="content">
 		<p>
 			Solve $\displaystyle x^2y'+2xy=\sin^2x$. <br>
@@ -159,14 +159,133 @@
 				\int d(x^2y) &= \int\sin^2x \ dx \\
 				x^2y &= \int\frac{1}{2}(1-\cos (2x)) \ dx \\
 				x^2y &= \int(\frac{1}{2}-\frac{1}{2}\cos (2x)) \ dx \\
-				
+				x^2y &= \frac{1}{2}x-\frac{\sin(2x)}{4} + C\\
+				y &= \frac{1}{2x}-\frac{\sin(2x)}{4x^2} + \frac{C}{x^2}\\
 			\end{align*}
-			
-			
-			
-			$$ \therefore  $$
 		</p>
 	</div>
+	
+	<!-- HDE -->
+	<h3>Homogeneous Differential Equations (LDE)</h3>	
+	<p> 
+		Come in the form of:
+		\begin{align*}
+			P(x,y)y' &= Q(x,y) & &\text{where $P$ and $Q$ have the same total degree}
+		\end{align*}
+
+		To solve these: 
+		
+		\begin{align*}
+			&\text{Get into the form of} & \frac{dy}{dx} &= F\frac{y}{x} \\
+			&\text{Make the substitution}& v &= \frac{y}{x} \\
+			& & y &= vx \\
+			& & dy &= v'x + v		
+		\end{align*}
+	
+		These will become <abbr title="Variable Seperable Differential Equations">VSDE</abbr> and we can continue from there. <br>
+		Apply initial conditions (ie find $C$) if given.
+	</p>
+	
+	<button class="collapsible">Example of a Homogeneous Differential Equation</button>
+	<div class="content">
+		<p>
+			Solve $\displaystyle xyy'=y^2-3x^2$. <br>
+			
+			\begin{align*}
+				xyy' &= y^2-3x^2 & &\text{Divide by $x^2$ to be able to substitute} \\
+				\frac{y}{x}y' &= \bigg(\frac{y}{x}\bigg)-3 & &\text{Substitute by $v=\frac{y}{x}$ and $y'=v'x+v$} \\
+				v(v'x+v) &= v^2-3  \\
+				v'x+v &= \frac{v^2-3}{v} \\
+				\frac{dv}{dx}x &= \frac{v^2-3}{v}-v \\
+				\frac{x}{dx} &= \frac{v^2-3-v^2}{v} \cdot \frac{1}{dv} \\
+				\frac{dx}{x} &= \frac{v}{-3} \ dv \\
+				\int v \ dv &= \int -3 \frac{dx}{x} \\
+				\frac{1}{2}v^2 &= -3\ln|x|+ln|C| \\
+				v^2 &= 2\ln\bigg|\frac{C}{x^3}\bigg| \\
+				v &= \pm\sqrt{2\ln\bigg|\frac{C}{x^3}\bigg|} \\
+				\frac{y}{x} &= \pm\sqrt{2\ln\bigg|\frac{C}{x^3}\bigg|} \\
+				y &= \pm x \sqrt{2\ln\bigg|\frac{C}{x^3}\bigg|}
+			\end{align*}
+			
+		</p>
+	</div>
+	
+	<!-- Bernoulli -->
+	<h3>Bernoulli Differential Equations</h3>	
+	<p> 
+		Come in the form of:
+		\begin{align*}
+			y'+P(x)y &= O(x)y^n & &\text{where $n \neq 0,1$}
+		\end{align*}
+
+		To solve these: 
+		
+		\begin{align*}
+			&\text{Divide by $y^n$} \\
+			&\text{Substitute by $v=y^{1-n}$}	
+		\end{align*}
+	
+		These will become <abbr title="Linear Differential Equations">LDE</abbr> and we can continue from there. <br>
+		Apply initial conditions (ie find $C$) if given.
+	</p>
+	
+	<button class="collapsible">Example of a Bernoulli Differential Equation</button>
+	<div class="content">
+		<p>
+			Solve $\displaystyle y'+\frac{2y}{x}=\frac{y^3}{x^2}$. <br>
+			We can see that this is Bernoulli and is $n=3$.
+			
+			\begin{align*}
+				y'+\frac{2y}{x} &= \frac{y^3}{x^2} & v = y^{1-3} &\rightarrow v = \frac{1}{y^2} \\
+				-\frac{1}{2}v^{-\tfrac{3}{2}}v' + \frac{2 \tfrac{1}{\sqrt{v}}}{x} &= \frac{\Big(\tfrac{1}{\sqrt{v}}\Big)^3}{x^2} & y^2 = \frac{1}{v} &\rightarrow y = \frac{1}{\sqrt{v}}\\
+				v' + \frac{2}{x\sqrt{v}}\cdot\frac{1}{-\tfrac{1}{2}v^{-\tfrac{3}{2}}} &= \frac{1}{x^2v^{\tfrac{3}{2}}} \cdot \frac{1}{-\frac{1}{2}v^{-\tfrac{3}{2}}} & y' &= -\frac{1}{2}v^{-\tfrac{3}{2}} \\
+				v' + \frac{2}{x\sqrt{v}}\cdot\Big(-2v^{\tfrac{3}{2}}\Big) &= \frac{-2v^{\tfrac{3}{2}}}{x^2v^{\tfrac{3}{2}}} \\
+				v' - \frac{4v}{x} &= -\frac{2}{x^2} \\		
+			\end{align*}
+			
+			This is a <abbr title="Linear Differential Equations">LDE</abbr> so we can follow those steps.
+			
+			\begin{align*}
+				v' - \frac{4v}{x} &= -\frac{2}{x^2} & I(x) &= e^{\int 4\tfrac{1}{x} \ dx} \\
+				\frac{v'}{x^4} - \frac{4v}{x^5} &= -\frac{2}{x^6} & &= e^{4\ln|x|} \\	
+				\frac{d\Big(\tfrac{1}{x^4}v\Big)}{dx} &= -\frac{2}{x^6} & &= x^4 \\
+				\int d\bigg(\frac{v}{x^4}\bigg) &= \int -\frac{2}{x^6} \ dx \\	
+				\frac{v}{x^4} &= -2 \cdot -\frac{x^{-5}}{-5} + C \\
+				v &= \frac{2}{5x} + Cx^4 \\		
+				\frac{1}{y^2} &= \frac{2}{5x} + Cx^4 \\
+				y^2 &= \frac{1}{\tfrac{2}{5x} + Cx^4} \\
+				y &= \frac{1}{\pm\sqrt{\tfrac{2}{5x} + Cx^4}} \\	
+			\end{align*}	
+		</p>
+	</div>
+	
+	<!-- Exact -->
+	<h3>Exact Differential Equations (EDE)</h3>	
+	<p> 
+		Come in the form of:
+		\begin{align*}
+			y'+P(x)y &= O(x)y^n & &\text{where $n \neq 0,1$}
+		\end{align*}
+
+		To solve these: 
+		
+		\begin{align*}
+			&\text{Divide by $y^n$} \\
+			&\text{Substitute by $v=y^{1-n}$}	
+		\end{align*}
+	
+		These will become <abbr title="Linear Differential Equations">LDE</abbr> and we can continue from there. <br>
+		Apply initial conditions (ie find $C$) if given.
+	</p>
+	
+	<button class="collapsible">Example of a Bernoulli Differential Equation</button>
+	<div class="content">
+		<p>
+			Solve $\displaystyle y'+\frac{2y}{x}=\frac{y^3}{x^2}$. <br>
+			
+		</p>
+	</div>
+	
 	
 	
 	
